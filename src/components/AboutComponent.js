@@ -21,34 +21,7 @@ function RenderPartner ({partner}) {
 
 }
 
-function PartnerList(props){
-    const partners = props.partners.partners.map(partner => {
-        return (
-            <Media tag="li" key={partner.id}> 
-                <RenderPartner partner={partner} />
-            </Media>
-        );
-    });
-
-    if(props.partners.isLoading){
-        return <Loading/>;
-    }
-    if (props.partners.errMess){
-        return(
-            <div className='col'>
-                <h4>{props.partners.errMess}</h4>
-            </div>
-        );
-    }
-    return(
-        <div className='col mt-4'>
-            <Media list>
-                {partners}
-            </Media>
-        </div>
-    )
-
-function About(props) {
+function About (props) {
 
     return (
         <div className="container">
@@ -102,10 +75,38 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-                <PartnerList partner={props.partners} />
+                <PartnerList partners={props.partners} />
             </div>
         </div>
     );
+}
+function PartnerList(props){
+    const partners = props.partners.partners.map(partner => {
+        return (
+            <Media tag="li" key={partner.id}> 
+                <RenderPartner partner={partner} />
+            </Media>
+        );
+    });
+
+    if(props.partners.isLoading){
+        return <Loading/>;
+    }
+    if (props.partners.errMess){
+        return(
+            <div className='col'>
+                <h4>{props.partners.errMess}</h4>
+            </div>
+        );
+    }
+    return(
+        <div className='col mt-4'>
+            <Media list>
+                {partners}
+            </Media>
+        </div>
+    )
+
 }
 
 export default About;
